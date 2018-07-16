@@ -19,7 +19,10 @@ def index():
 
 @app.route('/if', methods=['GET'])
 def impact_factor():
-    title = request.args.get('title')
+    try:
+        title = request.args.get('title')
+    except:
+        title = ''
     try:
         gt = float(request.args.get('gt'))
     except:
@@ -36,9 +39,14 @@ def impact_factor():
         page_size = int(request.args.get('page_size'))
     except:
         page_size = 10
-    order_by = request.args.get('order_by')
-    order_by = order_by if order_by in JournalData.__dict__ else 'IF'
-    order_type = request.args.get('order_type')
+    try:
+        order_by = request.args.get('order_by')
+    except:
+        order_by = order_by if order_by in JournalData.__dict__ else 'IF'
+    try:
+        order_type = request.args.get('order_type')
+    except:
+        order_type = 'asc'
 
     q = db.session.query(JournalData)
     # 搜索title
