@@ -4,7 +4,7 @@
     <view class="weui-cell weui-flex" style="flex-direction:row;">
       <view class="flex-item text-item">期刊名:</view>
       <view class="flex-item">
-        <input confirm-type='search' bindinput='bindNameInput' bindconfirm='querySCIInfo' placeholder='请输入期刊名' value='{{journal_name}}'/>
+        <input confirm-type='search' bindinput='bindNameInput' bindconfirm='querySCIInfo' placeholder='请输入期刊名' value='{{journal_name}}' />
       </view>
     </view>
 
@@ -14,11 +14,11 @@
       </view>
       <view class="weui-flex" style="flex-direction:row;">
         <view class='flex-item' style='width:40%;'>
-          <input class='if-input' bindinput='bindgtInput' type='number' confirm-type='search' placeholder='大于' value='{{if_gt}}'/>
+          <input class='if-input' bindinput='bindgtInput' type='number' confirm-type='search' placeholder='大于' value='{{if_gt}}' />
         </view>
-        <view class='flex-item' style='width:20%;' >-</view>
+        <view class='flex-item' style='width:20%;'>-</view>
         <view class='flex-item' style='width:40%;'>
-          <input class='if-input' bindinput='bindltInput' type='digit' confirm-type='search' placeholder='小于' value='{{if_lt}}'/>
+          <input class='if-input' bindinput='bindltInput' type='digit' confirm-type='search' placeholder='小于' value='{{if_lt}}' />
         </view>
       </view>
     </view>
@@ -26,7 +26,6 @@
       <button class="btn-search" bindtap='querySCIInfo'>点击查询</button>
     </view>
   </view>
-  <text class="weui-footer">未做翻页功能，仅显示影响因子Top10</text>
   <view name="SCIInfo" class="section" wx:if="{{SCIInfo != null}}">
     <view class='weui-cell'>
       <view class="table">
@@ -37,23 +36,24 @@
           <view class="th t-5if">5年IF</view>
         </view>
         <block wx:for="{{SCIInfo}}" wx:key="{{ISSN}}">
-          <view class="tr bg-g" wx:if="{{index % 2 == 0}}">
-            <view class="td t-issn">{{item.ISSN}}</view>
-            <view class="td t-title">{{item.title}}</view>
-            <view class="td t-if">{{item.IF}}</view>
-            <view class="td t-5if">{{item.IF_5_year}}</view>
+          <view class="tr bg-g" bindtap="showSCIInfo" data-key='{{index}}' wx:if="{{index % 2 == 0}}">
+            <text selectable='true' class="td t-issn">{{item.ISSN}}</text>
+            <text selectable='true' class="td t-title">{{item.title}}</text>
+            <text selectable='true' class="td t-if">{{item.IF}}</text>
+            <text selectable='true' class="td t-5if">{{item.IF_5_year}}</text>
           </view>
           <view class="tr" wx:else>
-            <view class="td t-issn">{{item.ISSN}}</view>
-            <view class="td t-title">{{item.title}}</view>
-            <view class="td t-if">{{item.IF}}</view>
-            <view class="td t-5if">{{item.IF_5_year}}</view>
+            <text selectable='true' class="td t-issn">{{item.ISSN}}</text>
+            <text selectable='true' class="td t-title">{{item.title}}</text>
+            <text selectable='true' class="td t-if">{{item.IF}}</text>
+            <text selectable='true' class="td t-5if">{{item.IF_5_year}}</text>
           </view>
         </block>
       </view>
     </view>
   </view>
+
   <view class='section'>
-  <view class='weui-footer'>by dongye</view>
+    <view class='weui-footer'>by dongye</view>
   </view>
 </view>
